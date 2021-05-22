@@ -1,10 +1,20 @@
 import React from "react";
+import Button from "./Button";
 
-const Header = () => {
+const Header = ({ title }) => {
+  const handleClick = () => {
+    console.log("Click");
+  };
+
   return (
-    <div>
-      <h1>Task Tracker</h1>
-    </div>
+    <header className="header">
+      <h1>{title}</h1>
+      <Button
+        color="purple"
+        text="Show Add Task Bar"
+        handleClick={handleClick}
+      />
+    </header>
   );
 };
 
