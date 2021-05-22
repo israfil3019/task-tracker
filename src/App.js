@@ -26,6 +26,8 @@ function App() {
     },
   ]);
 
+  const [showAddTask, setShowAddTask] = useState(false);
+
   const addTask = (task) => {
     const id = Math.floor(Math.random() * 100) + 1;
     const newTask = { id, ...task };
@@ -44,11 +46,21 @@ function App() {
     );
   };
 
+  const toggleShow = () => setShowAddTask(!showAddTask);
+
   return (
     <div className="App">
-      <Header title="Task tracker" />
-      <AddTask addTask={addTask} />
-      <Tasks tasks={tasks} deleteTask={deleteTask} toggleDone={toggleDone} />
+      <Header
+        title="Task Tracker"
+        showAddTask={showAddTask}
+        toggleShow={toggleShow}
+      />
+      {showAddTask && <AddTask addTask={addTask} />}
+      {tasks.length > 0 ? (
+        <Tasks tasks={tasks} deleteTask={deleteTask} toggleDone={toggleDone} />
+      ) : (
+        "No Tasks to Show"
+      )}
     </div>
   );
 }
