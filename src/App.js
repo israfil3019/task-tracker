@@ -35,11 +35,20 @@ function App() {
   const deleteTask = (deletedTaskId) => {
     setTasks(tasks.filter((task) => task.id !== deletedTaskId));
   };
+
+  const toggleDone = (toggleDoneId) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === toggleDoneId ? { ...task, isDone: !task.isDone } : task
+      )
+    );
+  };
+
   return (
     <div className="App">
       <Header title="Task tracker" />
       <AddTask addTask={addTask} />
-      <Tasks tasks={tasks} deleteTask={deleteTask} />
+      <Tasks tasks={tasks} deleteTask={deleteTask} toggleDone={toggleDone} />
     </div>
   );
 }
