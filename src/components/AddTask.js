@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
-const AddTask = () => {
+const AddTask = ({ addTask }) => {
   const [text, setText] = useState("");
   const [day, setDay] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(text);
-    console.log(day);
+    addTask({ text, day, isDone: false });
+    setText("");
+    setDay("");
   };
 
   return (
@@ -20,6 +21,7 @@ const AddTask = () => {
             name="text"
             type="text"
             placeholder="Add Task"
+            value={text}
             onChange={(e) => setText(e.target.value)}
           />
         </div>
@@ -30,6 +32,7 @@ const AddTask = () => {
             name="day"
             type="text"
             placeholder="Add Day & Time"
+            value={day}
             onChange={(e) => setDay(e.target.value)}
           />
         </div>

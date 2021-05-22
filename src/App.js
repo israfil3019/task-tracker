@@ -26,13 +26,19 @@ function App() {
     },
   ]);
 
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 100) + 1;
+    const newTask = { id, ...task };
+    setTasks([...tasks, newTask]);
+  };
+
   const deleteTask = (deletedTaskId) => {
     setTasks(tasks.filter((task) => task.id !== deletedTaskId));
   };
   return (
     <div className="App">
       <Header title="Task tracker" />
-      <AddTask />
+      <AddTask addTask={addTask} />
       <Tasks tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
