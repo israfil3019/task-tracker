@@ -25,11 +25,15 @@ function App() {
       isDone: false,
     },
   ]);
+
+  const deleteTask = (deletedTaskId) => {
+    setTasks(tasks.filter((task) => task.id !== deletedTaskId));
+  };
   return (
     <div className="App">
       <Header title="Task tracker" />
       <AddTask />
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }
